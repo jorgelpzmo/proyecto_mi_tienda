@@ -3,6 +3,7 @@ package grupospring.tiendaspring.Controladores;
 import grupospring.tiendaspring.Modelo.Cliente;
 import grupospring.tiendaspring.Modelo.Producto;
 import grupospring.tiendaspring.Servicios.ServicioProducto;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -33,13 +34,13 @@ public class ControladorProducto {
     }
 
     @PostMapping()
-    public ResponseEntity<Producto> crearProducto(@RequestBody Producto producto) {
+    public ResponseEntity<Producto> crearProducto(@Valid @RequestBody Producto producto) {
         Producto productoPersistido = this.servicioProducto.insertarProducto(producto);
         return ResponseEntity.ok(productoPersistido);
     }
 
     @PutMapping()
-    public ResponseEntity<Producto> actualizarProducto(@RequestBody Producto producto) {
+    public ResponseEntity<Producto> actualizarProducto(@Valid @RequestBody Producto producto) {
         Producto productoPersistido = this.servicioProducto.actualizarProducto(producto);
         return ResponseEntity.ok(productoPersistido);
     }

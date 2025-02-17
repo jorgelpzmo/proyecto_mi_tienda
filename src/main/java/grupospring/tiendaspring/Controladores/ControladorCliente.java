@@ -3,6 +3,7 @@ package grupospring.tiendaspring.Controladores;
 import grupospring.tiendaspring.Modelo.Cliente;
 import grupospring.tiendaspring.Modelo.LoginDTO;
 import grupospring.tiendaspring.Servicios.ServicioCliente;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -28,7 +29,7 @@ public class ControladorCliente {
     }
 
     @PostMapping
-    public ResponseEntity<Cliente> insertarCliente(@RequestBody Cliente cliente) {
+    public ResponseEntity<Cliente> insertarCliente(@Valid @RequestBody Cliente cliente) {
         Cliente clientePersistido = this.servicioCliente.guardarCLiente(cliente);
         return ResponseEntity.ok(clientePersistido);
     }
@@ -40,7 +41,7 @@ public class ControladorCliente {
     }
 
     @PutMapping
-    public ResponseEntity<Cliente> modificarCliente(@RequestBody Cliente cliente) {
+    public ResponseEntity<Cliente> modificarCliente(@Valid @RequestBody Cliente cliente) {
         Cliente clientePersistido = this.servicioCliente.guardarCLiente(cliente);
         return ResponseEntity.ok(clientePersistido);
     }
