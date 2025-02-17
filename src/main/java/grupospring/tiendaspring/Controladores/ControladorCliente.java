@@ -1,6 +1,7 @@
 package grupospring.tiendaspring.Controladores;
 
 import grupospring.tiendaspring.Modelo.Cliente;
+import grupospring.tiendaspring.Modelo.LoginDTO;
 import grupospring.tiendaspring.Servicios.ServicioCliente;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -30,6 +31,12 @@ public class ControladorCliente {
     public ResponseEntity<Cliente> insertarCliente(@RequestBody Cliente cliente) {
         Cliente clientePersistido = this.servicioCliente.guardarCLiente(cliente);
         return ResponseEntity.ok(clientePersistido);
+    }
+
+    @PostMapping("/login")
+    public ResponseEntity<Cliente> login(@RequestBody LoginDTO loginDTO) {
+        Cliente cliente = this.servicioCliente.login(loginDTO);
+        return ResponseEntity.ok(cliente);
     }
 
     @PutMapping
